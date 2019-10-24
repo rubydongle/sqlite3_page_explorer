@@ -136,6 +136,24 @@ function markDumpEnd() {
   return "";
 }
 
+function get8bitHex(num) {
+    var result = num.toString(16);
+    var count = 8-result.length;
+    for (var i = 0; i < count; i++) {
+        result = '0' + result;
+    }
+    return result;
+}
+
+function get8bitDec(num) {
+    var result = num.toString(10);
+    var count = 8-result.length;
+    for (var i = 0; i < count; i++) {
+        result = '0' + result;
+    }
+    return result;
+}
+
 function showHex(arr, start, ptype) {
   pageInfo.uint8arr = arr;
   pageInfo.start = start; pageInfo.ptype = ptype;
@@ -145,13 +163,19 @@ function showHex(arr, start, ptype) {
   pageInfo.cellCount = twoBytesToInt(arr, start + 3);
   pageInfo.nxtFB = pageInfo.firstFreeBlockStart;
   pageInfo.firstFreeBlockStart = twoBytesToInt(arr, start + 1);
-  var hex = "";
-  var dec = "";
+  var hex = "00000000: ";
+  var dec = "00000000: ";
   var txt = "";
   for (var i = 0; i < arr.length; i++) {
     if (i > 0 && i % 16 == 0) {
       hex += brk;
+      hex += get8bitHex(i);
+      hex += ": ";
+
       dec += brk;
+      dec += get8bitDec(i);
+      dec += ": ";
+
       txt += brk;
     }
     pageInfo.curPos = i;
