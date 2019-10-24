@@ -5,7 +5,7 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-var options = {backgroundColor: '#ffffff', width: 1024, height: 600}
+var options = {backgroundColor: '#FFFFFF', width: 1024, height: 600}
 
 function createWindow () {
   // Create the browser window.
